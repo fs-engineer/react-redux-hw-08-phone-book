@@ -7,7 +7,7 @@ import { getIsAdded } from '../../redux/contacts/contacts-selectors';
 
 export default function ContactsForm() {
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
   const isAdded = useSelector(getIsAdded);
   const dispatch = useDispatch();
 
@@ -17,19 +17,17 @@ export default function ContactsForm() {
     if (isAdded(name)) {
       return alert(`${name} is already in contacts`);
     } else {
-      dispatch(addContact(name, phone));
+      dispatch(addContact(name, number));
     }
 
     setName('');
-    setPhone('');
+    setNumber('');
   };
 
   return (
     <>
       <form className={s.form} onSubmit={e => handleSubmit(e)}>
-        <label id="name" htmlFor="name">
-          Имя
-        </label>
+        <label htmlFor="name">Имя</label>
         <input
           type="text"
           name="name"
@@ -37,18 +35,16 @@ export default function ContactsForm() {
           value={name}
           onChange={e => setName(e.target.value)}
         />
-        <label id="phone" htmlFor="phone">
-          Номер телефона
-        </label>
+        <label htmlFor="phone">Номер телефона</label>
         <input
           className={s.input}
           type="tel"
-          name="phone"
-          id="phone"
-          value={phone}
-          onChange={e => setPhone(e.target.value)}
+          name="number"
+          id="number"
+          value={number}
+          onChange={e => setNumber(e.target.value)}
         />
-        <button type="submit" disabled={!(name && phone)}>
+        <button type="submit" disabled={!(name && number)}>
           Добавить
         </button>
       </form>

@@ -11,10 +11,10 @@ export default function ContactsList() {
   return (
     <>
       <ul>
-        {filterContacts.map(({ id, name, phone }) => (
+        {filterContacts.map(({ id, name, number }) => (
           <li key={id}>
             <p className={s.nameText}>
-              {name}: <span>{phone}</span>
+              {name}: <span>{number}</span>
             </p>
             <button type="button" onClick={() => dispatch(deleteContacts(id))}>
               Delete
@@ -32,7 +32,7 @@ ContactsList.propTypes = {
     propTypes.exact({
       id: propTypes.string,
       name: propTypes.string,
-      phone: propTypes.string,
+      number: propTypes.string,
     }),
   ),
 };

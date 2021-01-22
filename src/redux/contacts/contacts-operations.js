@@ -11,29 +11,39 @@ import {
   fetchContactsError,
 } from './contacts-actions';
 
-export const fetchContacts = () => dispatch => {
+export const fetchContacts = () => async dispatch => {
   dispatch(fetchContactsRequest());
-  axios
-    .get('/contacts')
-    .then(({ data }) => dispatch(fetchContactsSuccess(data)))
-    .catch(error => dispatch(fetchContactsError(error)));
+
+  try {
+    const { data } = await axios.get('/contacts');
+
+    dispatch(fetchContactsSuccess(data));
+  } catch (error) {
+    dispatch(fetchContactsError(error.massage));
+  }
 };
 
-export const addContact = (name, phone) => dispatch => {
-  const contact = { name, phone };
-
+export const addContact = (name, number) => async dispatch => {
+  const contact = { name, number };
   dispatch(addContactsRequest());
-  axios
-    .post('/contacts', contact)
-    .then(({ data }) => dispatch(addContactsSuccess(data)))
-    .catch(error => dispatch(addContactsError(error)));
+
+  try {
+    const { data } = await axios.post('/contacts', contact);
+
+    dispatch(addContactsSuccess(data));
+  } catch (error) {
+    dispatch(addContactsError(error.massage));
+  }
 };
 
-export const deleteContacts = id => dispatch => {
+export const deleteContacts = id => async dispatch => {
   dispatch(deleteContactsRequest());
 
-  axios
-    .delete(`/contacts/${id}`)
-    .then(() => dispatch(deleteContactsSuccess(id)))
-    .catch(error => dispatch(deleteContactsError(error)));
+  try {
+    await axios.delete(`/contacts/${id}`);
+
+    dispatch(deleteContactsSuccess(id));
+  } catch (error) {
+    dispatch(deleteContactsError(error.massage));
+  }
 };
