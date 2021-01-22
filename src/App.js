@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchContacts } from './redux/contacts/contacts-operations';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import { getContacts, getIsLoading } from './redux/contacts/contacts-selectors';
+import Loader from 'react-loader-spinner';
+import Layout from './components/Layout/Layout';
+import Section from './components/Layout/Section';
+import ContactForm from './components/ContactForm/ContactForm';
+import ContactsList from './components/ContactsList/ContactsList';
+import Filter from './components/Filter/Filter';
 
-function App() {
+export default function App() {
+  const contacts = useSelector(getContacts);
+  const isLoading = useSelector(getIsLoading);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+      <Section title="Phonebook">
+        <ContactForm />
+      </Section>
+
+      {isLoading ? (
+        <Loader type="Rings" color="#00BFFF" height={80} width={80} />
+      ) : null}
+
+      {contacts.length ? (
+        <Section title="Contacts">
+          <Filter />
+          <ContactsList />
+        </Section>
+      ) : null}
+    </Layout>
   );
 }
-
-export default App;
