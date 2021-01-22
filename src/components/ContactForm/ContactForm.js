@@ -28,7 +28,7 @@ export default function ContactsForm() {
     <>
       <form className={s.form} onSubmit={e => handleSubmit(e)}>
         <label id="name" htmlFor="name">
-          Name
+          Имя
         </label>
         <input
           type="text"
@@ -38,7 +38,7 @@ export default function ContactsForm() {
           onChange={e => setName(e.target.value)}
         />
         <label id="phone" htmlFor="phone">
-          Phone
+          Номер телефона
         </label>
         <input
           className={s.input}
@@ -49,7 +49,7 @@ export default function ContactsForm() {
           onChange={e => setPhone(e.target.value)}
         />
         <button type="submit" disabled={!(name && phone)}>
-          add contact
+          Добавить
         </button>
       </form>
     </>

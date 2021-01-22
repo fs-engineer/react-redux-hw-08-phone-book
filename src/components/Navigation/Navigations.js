@@ -1,11 +1,10 @@
-import NavLink from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export default function Navigations() {
   return (
     <nav>
-      <NavLink to="/" exact>
-        Home
-      </NavLink>
+      <NavLink to="/">Home</NavLink>
+      <NavLink to="/contacts">Contacts</NavLink>
     </nav>
   );
 }
