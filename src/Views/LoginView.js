@@ -8,8 +8,6 @@ export default function LoginViews() {
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
 
-  console.log(email, password);
-
   const handleSubmit = e => {
     e.preventDefault();
 
