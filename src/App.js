@@ -1,10 +1,10 @@
 import { Switch, Route } from 'react-router-dom';
 
 import AppBar from './components/Navigation/AppBar';
-import HomeView from './components/Views/HomeView';
-import ContactsView from './components/Views/ContactsView';
-import LoginView from './components/Views/LoginView';
-import RegisterView from './components/Views/RegisterView';
+import HomeView from './Views/HomeView';
+import ContactsView from './Views/ContactsView';
+import LoginView from './Views/LoginView';
+import RegisterView from './Views/RegisterView';
 
 export default function App() {
   return (

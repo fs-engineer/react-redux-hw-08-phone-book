@@ -1,16 +1,16 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchContacts } from '../../redux/contacts/contacts-operations';
+import { fetchContacts } from '../redux/contacts/contacts-operations';
 import {
   getContacts,
   getIsLoading,
-} from '../../redux/contacts/contacts-selectors';
+} from '../redux/contacts/contacts-selectors';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import Loader from 'react-loader-spinner';
 import Section from '../Layout/Section';
-import ContactForm from '../ContactForm/ContactForm';
-import ContactsList from '../ContactsList/ContactsList';
-import Filter from '../Filter/Filter';
+import ContactForm from '../components/ContactForm/ContactForm';
+import ContactsList from '../components/ContactsList/ContactsList';
+import Filter from '../components/Filter/Filter';
 
 export default function ContactsView() {
   const contacts = useSelector(getContacts);

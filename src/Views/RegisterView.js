@@ -1,24 +1,36 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Section from '../Layout/Section';
-import authOperations from '../../redux/auth/auth-operations';
+import authOperations from '../redux/auth/auth-operations';
 
-export default function LoginViews() {
+export default function RegisterView() {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
 
-  console.log(email, password);
-
   const handleSubmit = e => {
     e.preventDefault();
 
-    dispatch(authOperations.logIn({ email, password }));
+    const user = { name, email, password };
+    dispatch(authOperations.register(user));
+
+    setName('');
+    setEmail('');
+    setPassword('');
   };
 
   return (
-    <Section title="LoginView">
+    <Section title="RegisterView">
       <form>
+        <label htmlFor="name">Имя</label>
+        <input
+          type="Name"
+          name="Name"
+          id="name"
+          value={name}
+          onChange={({ target: { value } }) => setName(value)}
+        />
         <label htmlFor="email">Email</label>
         <input
           type="email"
@@ -36,7 +48,7 @@ export default function LoginViews() {
           onChange={({ target: { value } }) => setPassword(value)}
         />
         <button type="submit" onClick={e => handleSubmit(e)}>
-          Войти
+          Регистрация
         </button>
       </form>
     </Section>
