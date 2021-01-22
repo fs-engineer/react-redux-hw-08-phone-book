@@ -6,7 +6,10 @@ import logger from 'redux-logger';
 const middleware = [...getDefaultMiddleware(), logger];
 
 const store = configureStore({
-  reducer: { contacts: contactsReducer, auth: authReducer },
+  reducer: {
+    contacts: contactsReducer,
+    auth: authReducer,
+  },
   middleware,
   devTools: process.env.NODE_ENV === 'development',
 });

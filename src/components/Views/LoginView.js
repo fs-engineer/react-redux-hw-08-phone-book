@@ -12,7 +12,7 @@ export default function LoginViews() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log('submit');
+
     dispatch(authOperations.logIn({ email, password }));
   };
 
