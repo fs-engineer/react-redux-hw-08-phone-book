@@ -1,13 +1,33 @@
-import { createActions } from '@reduxjs/toolkit';
+import { createAction } from '@reduxjs/toolkit';
 
-export const registrationsRequest = createActions('auth/registrationsRequest');
-export const registrationsSuccess = createActions('auth/registrationsSuccess');
-export const registrationsError = createActions('auth/registrationsError');
+const registerRequest = createAction('auth/registerRequest');
+const registerSuccess = createAction('auth/registerSuccess');
+const registerError = createAction('auth/registerError');
 
-export const loginRequest = createActions('auth/loginRequest');
-export const loginSuccess = createActions('auth/loginSuccess');
-export const loginError = createActions('auth/loginError');
+const logInRequest = createAction('auth/logInRequest');
+const logInSuccess = createAction('auth/logInSuccess');
+const logInError = createAction('auth/logInError');
 
-export const logOutRequest = createActions('auth/logOutRequest');
-export const logOutSuccess = createActions('auth/logOutSuccess');
-export const logOutError = createActions('auth/logOutError');
+const logOutRequest = createAction('auth/logOutRequest');
+const logOutSuccess = createAction('auth/logOutSuccess');
+const logOutError = createAction('auth/logOutError');
+
+const getCurrentUserRequest = createAction('auth/getCurrentUserRequest');
+const getCurrentUserSuccess = createAction('auth/getCurrentUserSuccess');
+const getCurrentUserError = createAction('auth/getCurrentUserError');
+
+// eslint-disable-next-line import/no-anonymous-default-export
+export default {
+  registerRequest,
+  registerSuccess,
+  registerError,
+  logInRequest,
+  logInSuccess,
+  logInError,
+  logOutRequest,
+  logOutSuccess,
+  logOutError,
+  getCurrentUserRequest,
+  getCurrentUserSuccess,
+  getCurrentUserError,
+};

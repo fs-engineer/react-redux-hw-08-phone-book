@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
 import { fetchContacts } from '../../redux/contacts/contacts-operations';
 import {
   getContacts,

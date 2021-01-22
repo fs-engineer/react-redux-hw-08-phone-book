@@ -12,7 +12,7 @@ import {
   deleteContactsError,
 } from './contacts-actions';
 
-const contacts = createReducer([], {
+const item = createReducer([], {
   [fetchContactsSuccess]: (_, { payload }) => payload,
   [addContactsSuccess]: (state, { payload }) => [...state, payload],
   [deleteContactsSuccess]: (state, { payload }) =>
@@ -38,7 +38,7 @@ const isLoading = createReducer(false, {
 });
 
 export default combineReducers({
-  contacts,
+  item,
   filter,
   isLoading,
 });
