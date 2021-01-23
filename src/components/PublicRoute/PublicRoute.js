@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import { getIsAuthenticated } from '../../redux/auth/auth-selectors';
 
-export default function PrivateRoute({
+export default function PublicRoute({
   component: Component,
   redirectTo,
   ...routeProps
@@ -13,10 +13,10 @@ export default function PrivateRoute({
     <Route
       {...routeProps}
       render={props =>
-        isAuthenticated ? (
-          <Component {...props} />
-        ) : (
+        isAuthenticated && routeProps.restricted ? (
           <Redirect to={redirectTo} />
+        ) : (
+          <Component {...props} />
         )
       }
     />

@@ -7,6 +7,8 @@ import ContactsView from './Views/ContactsView';
 import LoginView from './Views/LoginView';
 import RegisterView from './Views/RegisterView';
 import authOperations from './redux/auth/auth-operations';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import PublicRoute from './components/PublicRoute/PublicRoute';
 
 export default function App({ getUser }) {
   const dispatch = useDispatch();
@@ -19,18 +21,24 @@ export default function App({ getUser }) {
     <>
       <AppBar />
       <Switch>
-        <Route path="/" exact>
-          <HomeView />
-        </Route>
-        <Route path="/contacts">
-          <ContactsView />
-        </Route>
-        <Route path="/login">
-          <LoginView />
-        </Route>
-        <Route path="/register">
-          <RegisterView />
-        </Route>
+        <Route path="/" exact component={HomeView} />
+        <PublicRoute
+          path="/login"
+          redirectTo="/contacts"
+          restricted
+          component={LoginView}
+        />
+        <PublicRoute
+          path="/register"
+          redirectTo="/contacts"
+          restricted
+          component={RegisterView}
+        />
+        <PrivateRoute
+          path="/contacts"
+          component={ContactsView}
+          redirectTo="/login"
+        />
       </Switch>
     </>
   );
