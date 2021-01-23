@@ -6,8 +6,9 @@ import {
 import { getFilteredContacts } from '../../redux/contacts/contacts-selectors';
 import propTypes from 'prop-types';
 import s from './ContactsList.module.css';
+import { FaUserEdit, FaTrashAlt } from 'react-icons/fa';
 
-export default function ContactsList() {
+export default function ContactsList({ onOpenModal }) {
   const filterContacts = useSelector(getFilteredContacts);
   const dispatch = useDispatch();
 
@@ -15,16 +16,26 @@ export default function ContactsList() {
     <>
       <ul>
         {filterContacts.map(({ id, name, number }) => (
-          <li key={id}>
+          <li className={s.item} key={id}>
             <p className={s.nameText}>
               {name}: <span>{number}</span>
             </p>
-            <button type="button" onClick={() => dispatch(deleteContacts(id))}>
-              Delete
-            </button>
-            {/* <button type="button" onClick={() => dispatch(editContacts(id))}>
-              Edit
-            </button> */}
+            <div>
+              <button
+                className={s.button}
+                type="button"
+                onClick={() => onOpenModal(id)}
+              >
+                <FaUserEdit size="20" />
+              </button>
+              <button
+                className={s.button}
+                type="button"
+                onClick={() => dispatch(deleteContacts(id))}
+              >
+                <FaTrashAlt size="20" className={s.delete} />
+              </button>
+            </div>
           </li>
         ))}
       </ul>

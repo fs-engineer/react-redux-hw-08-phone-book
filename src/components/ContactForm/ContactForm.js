@@ -35,22 +35,26 @@ export default function ContactsForm() {
             name="name"
             id="name"
             value={name}
+            placeholder="имя"
             onChange={e => setName(e.target.value)}
           />
-          <label className={name ? s.labelRight : s.label} htmlFor="name">
-            Имя
-          </label>
+          <label
+            className={name ? s.labelRight : s.label}
+            htmlFor="name"
+          ></label>
         </div>
         <div className={s.inputWrapper}>
-          <label className={number ? s.labelRight : s.label} htmlFor="phone">
-            Номер телефона
-          </label>
+          <label
+            className={number ? s.labelRight : s.label}
+            htmlFor="phone"
+          ></label>
           <input
             className={s.input}
             type="tel"
             name="number"
             id="number"
             value={number}
+            placeholder="Номер телефона"
             onChange={e => setNumber(e.target.value)}
           />
         </div>

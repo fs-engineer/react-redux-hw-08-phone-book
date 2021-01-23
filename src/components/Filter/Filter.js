@@ -15,14 +15,14 @@ export default function Filter() {
           name="filter"
           htmlFor="filter"
           value={filter}
-        >
-          Find contacts by name
-        </label>
+        ></label>
         <input
+          style={{ marginBottom: '30px' }}
           className={s.input}
           value={filter}
           type="text"
           id="filter"
+          placeholder="найти контакт по имени"
           onChange={e => dispatch(contactsActions.changeFilter(e.target.value))}
         />
       </div>

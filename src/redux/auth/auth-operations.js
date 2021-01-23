@@ -1,6 +1,6 @@
 import axios from 'axios';
 import authActions from './auth-actions';
-import { infoNotify } from '../../services/tostify';
+import { infoNotify, warnNotify } from '../../services/tostify';
 
 axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
 
@@ -23,6 +23,7 @@ const register = credentials => async dispatch => {
     dispatch(authActions.registerSuccess(data));
   } catch (error) {
     dispatch(authActions.registerError(error.message));
+    warnNotify(error.message);
   }
 };
 
@@ -37,7 +38,7 @@ const logIn = credentials => async dispatch => {
     infoNotify('Добро пожаловать');
   } catch (error) {
     dispatch(authActions.logInError(error.message));
-    console.log(error.message);
+    warnNotify(error.message);
   }
 };
 
@@ -51,6 +52,7 @@ const logOut = () => async dispatch => {
     dispatch(authActions.logOutSuccess());
   } catch (error) {
     dispatch(authActions.logOutError(error));
+    warnNotify(error.message);
   }
 };
 
@@ -72,6 +74,7 @@ const getCurrentUser = () => async (dispatch, getState) => {
     dispatch(authActions.getCurrentUserSuccess(data));
   } catch (error) {
     dispatch(authActions.getCurrentUserError(error));
+    warnNotify(error.message);
   }
 };
 
