@@ -1,49 +1,51 @@
 import axios from 'axios';
-import {
-  addContactsRequest,
-  addContactsSuccess,
-  addContactsError,
-  deleteContactsRequest,
-  deleteContactsSuccess,
-  deleteContactsError,
-  fetchContactsRequest,
-  fetchContactsSuccess,
-  fetchContactsError,
-} from './contacts-actions';
+import contactsActions from './contacts-actions';
 
 export const fetchContacts = () => async dispatch => {
-  dispatch(fetchContactsRequest());
+  dispatch(contactsActions.fetchContactsRequest());
 
   try {
     const { data } = await axios.get('/contacts');
 
-    dispatch(fetchContactsSuccess(data));
+    dispatch(contactsActions.fetchContactsSuccess(data));
   } catch (error) {
-    dispatch(fetchContactsError(error.massage));
+    dispatch(contactsActions.fetchContactsError(error.massage));
   }
 };
 
 export const addContact = (name, number) => async dispatch => {
   const contact = { name, number };
-  dispatch(addContactsRequest());
+  dispatch(contactsActions.addContactsRequest());
 
   try {
     const { data } = await axios.post('/contacts', contact);
 
-    dispatch(addContactsSuccess(data));
+    dispatch(contactsActions.addContactsSuccess(data));
   } catch (error) {
-    dispatch(addContactsError(error.massage));
+    dispatch(contactsActions.addContactsError(error.massage));
   }
 };
 
 export const deleteContacts = id => async dispatch => {
-  dispatch(deleteContactsRequest());
+  dispatch(contactsActions.deleteContactsRequest());
 
   try {
     await axios.delete(`/contacts/${id}`);
 
-    dispatch(deleteContactsSuccess(id));
+    dispatch(contactsActions.deleteContactsSuccess(id));
   } catch (error) {
-    dispatch(deleteContactsError(error.massage));
+    dispatch(contactsActions.deleteContactsError(error.massage));
   }
 };
+
+// export const editContacts = id => async dispatch => {
+//   dispatch(editContactsRequest());
+
+//   try {
+//     await axios.patch(`/contacts/${id}`);
+
+//     dispatch(editContactsSuccess());
+//   } catch (error) {
+//     dispatch(editContactsError(error.massage));
+//   }
+// };

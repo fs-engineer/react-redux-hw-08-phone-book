@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { useSelector } from 'react-redux';
 import authActions from './auth-actions';
 
 axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
@@ -57,12 +56,6 @@ const getCurrentUser = () => async (dispatch, getState) => {
   const {
     auth: { token: persistedToken },
   } = getState();
-
-  console.log(persistedToken);
-  console.log(getState());
-  console.log('getCurrentUser refresh');
-
-  // const persistedToken = useSelector(state => state.persistedToken);
 
   if (!persistedToken) {
     return;

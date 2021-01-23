@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { changeFilter } from '../../redux/contacts/contacts-actions';
+import contactsActions from '../../redux/contacts/contacts-actions';
 import { getFilter } from '../../redux/contacts/contacts-selectors';
 import s from './Filter.module.css';
 
@@ -16,7 +16,7 @@ export default function Filter() {
         value={filter}
         type="text"
         id="filter"
-        onChange={e => dispatch(changeFilter(e.target.value))}
+        onChange={e => dispatch(contactsActions.changeFilter(e.target.value))}
       />
     </>
   );
