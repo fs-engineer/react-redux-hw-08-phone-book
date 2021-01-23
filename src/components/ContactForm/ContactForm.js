@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import propTypes from 'prop-types';
-// import s from './ContactForm.module.css';
 import { addContact } from '../../redux/contacts/contacts-operations';
 import { getIsAdded } from '../../redux/contacts/contacts-selectors';
-import s from '../../base.module.css';
 
 export default function ContactsForm() {
   const [name, setName] = useState('');
@@ -27,10 +25,10 @@ export default function ContactsForm() {
 
   return (
     <>
-      <form className={s.form} onSubmit={e => handleSubmit(e)}>
-        <div className={s.inputWrapper}>
+      <form className="form" onSubmit={e => handleSubmit(e)}>
+        <div className="inputWrapper">
           <input
-            className={s.input}
+            className="input"
             type="text"
             name="name"
             id="name"
@@ -39,17 +37,17 @@ export default function ContactsForm() {
             onChange={e => setName(e.target.value)}
           />
           <label
-            className={name ? s.labelRight : s.label}
+            className={name ? 'labelRight' : 'label'}
             htmlFor="name"
           ></label>
         </div>
-        <div className={s.inputWrapper}>
+        <div className="inputWrapper">
           <label
-            className={number ? s.labelRight : s.label}
+            className={number ? 'labelRight' : 'label'}
             htmlFor="phone"
           ></label>
           <input
-            className={s.input}
+            className="input"
             type="tel"
             name="number"
             id="number"
@@ -58,7 +56,7 @@ export default function ContactsForm() {
             onChange={e => setNumber(e.target.value)}
           />
         </div>
-        <button className={s.button} type="submit" disabled={!(name && number)}>
+        <button className="button" type="submit" disabled={!(name && number)}>
           Добавить
         </button>
       </form>

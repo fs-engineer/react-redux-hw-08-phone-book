@@ -24,7 +24,7 @@ export default function ContactsList({ onOpenModal }) {
               <button
                 className={s.button}
                 type="button"
-                onClick={() => onOpenModal(id)}
+                onClick={() => onOpenModal({ name, number }, id)}
               >
                 <FaUserEdit size="20" />
               </button>

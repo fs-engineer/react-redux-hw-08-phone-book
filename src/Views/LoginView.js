@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Section from '../Layout/Section';
 import authOperations from '../redux/auth/auth-operations';
-import s from '../base.module.css';
 
 export default function LoginViews() {
   const [email, setEmail] = useState('');
@@ -17,14 +16,14 @@ export default function LoginViews() {
 
   return (
     <Section title="Вход в аккаунт">
-      <div className={s.wrapper}>
-        <form className={s.form}>
-          <div className={s.inputWrapper}>
-            <label className={s.label} htmlFor="email">
+      <div className="wrapper">
+        <form className="form">
+          <div className="inputWrapper">
+            <label className="label" htmlFor="email">
               {/* email */}
             </label>
             <input
-              className={s.input}
+              className="input"
               type="email"
               name="email"
               id="email"
@@ -33,12 +32,12 @@ export default function LoginViews() {
               onChange={({ target: { value } }) => setEmail(value)}
             />
           </div>
-          <div className={s.inputWrapper}>
-            <label className={s.label} htmlFor="password">
+          <div className="inputWrapper">
+            <label className="label" htmlFor="password">
               {/* пароль */}
             </label>
             <input
-              className={s.input}
+              className="input"
               type="password"
               name="password"
               id="password"
@@ -49,7 +48,7 @@ export default function LoginViews() {
             />
           </div>
           <button
-            className={s.button}
+            className="button"
             type="submit"
             onClick={e => handleSubmit(e)}
           >

@@ -14,16 +14,15 @@ import Filter from '../components/Filter/Filter';
 import ContactModal from '../components/ContactModal/ContactModal';
 
 export default function ContactsView() {
-  const [isOpen, setIsOpen] = useState(false);
   const contacts = useSelector(getContacts);
   const isLoading = useSelector(getIsLoading);
   const dispatch = useDispatch();
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [editContact, setEditContact] = useState({});
 
-  const handleOpenModal = id => {
-    console.log(id);
-    const contact = contacts.filter(contact => contact.id === id);
-    console.log(contact);
-    setIsOpen(true);
+  const handleOpenModal = (contact, id) => {
+    setIsOpenModal(true);
+    setEditContact({ contact, id });
   };
 
   useEffect(() => {
@@ -44,7 +43,12 @@ export default function ContactsView() {
         <Section title="Контакты">
           <Filter />
           <ContactsList onOpenModal={handleOpenModal} />
-          {isOpen && <ContactModal onIsOpen={setIsOpen} />}
+          {isOpenModal && (
+            <ContactModal
+              onCloseModal={setIsOpenModal}
+              contactData={editContact}
+            />
+          )}
         </Section>
       ) : null}
     </Section>

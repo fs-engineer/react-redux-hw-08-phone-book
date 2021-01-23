@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import store from './redux/store';
 import App from './App';
 import './index.css';
-import './base.module.css';
+import './base.css';
 
 ReactDOM.render(
   <React.StrictMode>
