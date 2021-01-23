@@ -8,7 +8,7 @@ export default function Navigations() {
   const isAuthenticated = useSelector(getIsAuthenticated);
 
   return (
-    <nav>
+    <nav className={s.nav}>
       <NavLink className={s.link} to="/">
         <IoHome size="20" />
       </NavLink>

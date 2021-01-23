@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import propTypes from 'prop-types';
-import s from './ContactForm.module.css';
+// import s from './ContactForm.module.css';
 import { addContact } from '../../redux/contacts/contacts-operations';
 import { getIsAdded } from '../../redux/contacts/contacts-selectors';
+import s from '../../base.module.css';
 
 export default function ContactsForm() {
   const [name, setName] = useState('');
@@ -27,24 +28,33 @@ export default function ContactsForm() {
   return (
     <>
       <form className={s.form} onSubmit={e => handleSubmit(e)}>
-        <label htmlFor="name">Имя</label>
-        <input
-          type="text"
-          name="name"
-          id="name"
-          value={name}
-          onChange={e => setName(e.target.value)}
-        />
-        <label htmlFor="phone">Номер телефона</label>
-        <input
-          className={s.input}
-          type="tel"
-          name="number"
-          id="number"
-          value={number}
-          onChange={e => setNumber(e.target.value)}
-        />
-        <button type="submit" disabled={!(name && number)}>
+        <div className={s.inputWrapper}>
+          <label className={s.label} htmlFor="name">
+            Имя
+          </label>
+          <input
+            className={s.input}
+            type="text"
+            name="name"
+            id="name"
+            value={name}
+            onChange={e => setName(e.target.value)}
+          />
+        </div>
+        <div className={s.inputWrapper}>
+          <label className={s.label} htmlFor="phone">
+            Номер телефона
+          </label>
+          <input
+            className={s.input}
+            type="tel"
+            name="number"
+            id="number"
+            value={number}
+            onChange={e => setNumber(e.target.value)}
+          />
+        </div>
+        <button className={s.button} type="submit" disabled={!(name && number)}>
           Добавить
         </button>
       </form>

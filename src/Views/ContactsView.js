@@ -22,7 +22,7 @@ export default function ContactsView() {
   }, [dispatch]);
 
   return (
-    <Section title="Контакты">
+    <Section title="Введите имя и номер">
       <ContactForm />
 
       {isLoading ? (
@@ -30,7 +30,7 @@ export default function ContactsView() {
       ) : null}
 
       {contacts.length ? (
-        <Section title="Contacts">
+        <Section title="Контакты">
           <Filter />
           <ContactsList />
         </Section>

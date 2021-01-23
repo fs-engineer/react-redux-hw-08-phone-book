@@ -10,5 +10,25 @@
 }
 
 .link:hover {
-  color: salmon;
+  color: #fa8072;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 250px;
+}
+.button {
+  background-color: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+}
+.name {
+  margin-right: 30px;
+}
+.userWrapper {
+  display: flex;
+  align-items: center;
 }

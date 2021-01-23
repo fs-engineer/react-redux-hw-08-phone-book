@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Section from '../Layout/Section';
 import authOperations from '../redux/auth/auth-operations';
+import s from '../base.module.css';
 
 export default function LoginViews() {
   const [email, setEmail] = useState('');
@@ -15,28 +16,47 @@ export default function LoginViews() {
   };
 
   return (
-    <Section title="LoginView">
-      <form>
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          value={email}
-          onChange={({ target: { value } }) => setEmail(value)}
-        />
-        <label htmlFor="password">Пароль</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          value={password}
-          onChange={({ target: { value } }) => setPassword(value)}
-        />
-        <button type="submit" onClick={e => handleSubmit(e)}>
-          Войти
-        </button>
-      </form>
+    <Section title="Вход в аккаунт">
+      <div className={s.wrapper}>
+        <form className={s.form}>
+          <div className={s.inputWrapper}>
+            <label className={s.label} htmlFor="email">
+              email
+            </label>
+            <input
+              className={s.input}
+              type="email"
+              name="email"
+              id="email"
+              value={email}
+              placeholder="email"
+              onChange={({ target: { value } }) => setEmail(value)}
+            />
+          </div>
+          <div className={s.inputWrapper}>
+            <label className={s.label} htmlFor="password">
+              пароль
+            </label>
+            <input
+              className={s.input}
+              type="password"
+              name="password"
+              id="password"
+              value={password}
+              minLength="7"
+              placeholder="пароль"
+              onChange={({ target: { value } }) => setPassword(value)}
+            />
+          </div>
+          <button
+            className={s.button}
+            type="submit"
+            onClick={e => handleSubmit(e)}
+          >
+            Войти
+          </button>
+        </form>
+      </div>
     </Section>
   );
 }
