@@ -21,7 +21,7 @@ export default function LoginViews() {
         <form className={s.form}>
           <div className={s.inputWrapper}>
             <label className={s.label} htmlFor="email">
-              email
+              {/* email */}
             </label>
             <input
               className={s.input}
@@ -35,7 +35,7 @@ export default function LoginViews() {
           </div>
           <div className={s.inputWrapper}>
             <label className={s.label} htmlFor="password">
-              пароль
+              {/* пароль */}
             </label>
             <input
               className={s.input}

@@ -90,15 +90,22 @@ li {
   font-style: italic;
 }
 .input::placeholder {
-  color: transparent;
+  color: blanchedalmond;
+  padding-left: 1px;
+  transition: all 0.3s linear;
 }
-.input:hover.label {
-  opacity: 0;
-  left: 330px;
+
+.input:focus.input::placeholder {
+  padding-left: 330px;
 }
-/* .inputWrapper:hover .label {
+.labelRight {
   left: 330px;
-} */
+  position: absolute;
+  font-style: italic;
+  color: blanchedalmond;
+  transition: all 0.3s linear;
+}
+
 .inputWrapper {
   position: relative;
 }

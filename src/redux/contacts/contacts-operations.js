@@ -1,5 +1,6 @@
 import axios from 'axios';
 import contactsActions from './contacts-actions';
+import { infoNotify } from '../../services/tostify';
 
 export const fetchContacts = () => async dispatch => {
   dispatch(contactsActions.fetchContactsRequest());
@@ -16,6 +17,7 @@ export const fetchContacts = () => async dispatch => {
 export const addContact = (name, number) => async dispatch => {
   const contact = { name, number };
   dispatch(contactsActions.addContactsRequest());
+  infoNotify('Запись добавлена');
 
   try {
     const { data } = await axios.post('/contacts', contact);

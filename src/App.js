@@ -11,6 +11,7 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import PublicRoute from './components/PublicRoute/PublicRoute';
 import Container from './Layout/Container';
 import s from './App.module.css';
+import './services/tostify';
 
 export default function App() {
   const dispatch = useDispatch();

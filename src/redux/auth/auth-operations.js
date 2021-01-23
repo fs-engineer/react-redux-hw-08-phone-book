@@ -1,5 +1,6 @@
 import axios from 'axios';
 import authActions from './auth-actions';
+import { infoNotify } from '../../services/tostify';
 
 axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
 
@@ -33,6 +34,7 @@ const logIn = credentials => async dispatch => {
 
     token.set(data.token);
     dispatch(authActions.logInSuccess(data));
+    infoNotify('Добро пожаловать');
   } catch (error) {
     dispatch(authActions.logInError(error.message));
     console.log(error.message);

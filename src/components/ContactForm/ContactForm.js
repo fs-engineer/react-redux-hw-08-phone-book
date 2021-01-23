@@ -29,9 +29,6 @@ export default function ContactsForm() {
     <>
       <form className={s.form} onSubmit={e => handleSubmit(e)}>
         <div className={s.inputWrapper}>
-          <label className={s.label} htmlFor="name">
-            Имя
-          </label>
           <input
             className={s.input}
             type="text"
@@ -40,9 +37,12 @@ export default function ContactsForm() {
             value={name}
             onChange={e => setName(e.target.value)}
           />
+          <label className={name ? s.labelRight : s.label} htmlFor="name">
+            Имя
+          </label>
         </div>
         <div className={s.inputWrapper}>
-          <label className={s.label} htmlFor="phone">
+          <label className={number ? s.labelRight : s.label} htmlFor="phone">
             Номер телефона
           </label>
           <input

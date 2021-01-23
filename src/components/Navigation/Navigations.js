@@ -2,10 +2,12 @@ import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { getIsAuthenticated } from '../../redux/auth/auth-selectors';
 import { IoHome } from 'react-icons/io5';
+import { ImListNumbered } from 'react-icons/im';
 import s from './Navigations.module.css';
 
 export default function Navigations() {
   const isAuthenticated = useSelector(getIsAuthenticated);
+  const screenWidth = window.innerWidth;
 
   return (
     <nav className={s.nav}>
@@ -14,7 +16,7 @@ export default function Navigations() {
       </NavLink>
       {isAuthenticated && (
         <NavLink className={s.link} to="/contacts">
-          Контакты
+          {screenWidth <= 767 ? <ImListNumbered /> : 'Контакты'}
         </NavLink>
       )}
     </nav>
