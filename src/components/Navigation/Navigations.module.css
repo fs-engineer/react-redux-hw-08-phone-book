@@ -1,0 +1,14 @@
+.header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid salmon;
+  padding: 20px;
+  margin: 50px auto 0;
+  box-shadow: 0 0 1px 1px salmon;
+  border-radius: 5px;
+}
+
+.link:hover {
+  color: salmon;
+}

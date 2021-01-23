@@ -9,8 +9,10 @@ import RegisterView from './Views/RegisterView';
 import authOperations from './redux/auth/auth-operations';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import PublicRoute from './components/PublicRoute/PublicRoute';
+import Container from './Layout/Container';
+import s from './App.module.css';
 
-export default function App({ getUser }) {
+export default function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -19,27 +21,29 @@ export default function App({ getUser }) {
 
   return (
     <>
-      <AppBar />
-      <Switch>
-        <Route path="/" exact component={HomeView} />
-        <PublicRoute
-          path="/login"
-          redirectTo="/contacts"
-          restricted
-          component={LoginView}
-        />
-        <PublicRoute
-          path="/register"
-          redirectTo="/contacts"
-          restricted
-          component={RegisterView}
-        />
-        <PrivateRoute
-          path="/contacts"
-          component={ContactsView}
-          redirectTo="/login"
-        />
-      </Switch>
+      <Container>
+        <AppBar className={s.bar} />
+        <Switch>
+          <Route path="/" exact component={HomeView} />
+          <PublicRoute
+            path="/login"
+            redirectTo="/contacts"
+            restricted
+            component={LoginView}
+          />
+          <PublicRoute
+            path="/register"
+            redirectTo="/contacts"
+            restricted
+            component={RegisterView}
+          />
+          <PrivateRoute
+            path="/contacts"
+            component={ContactsView}
+            redirectTo="/login"
+          />
+        </Switch>
+      </Container>
     </>
   );
 }
