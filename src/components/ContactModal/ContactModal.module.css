@@ -11,6 +11,11 @@
   z-index: 1200;
 }
 .modal {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 50%;
   height: 50%;
   padding: 30px;
@@ -21,4 +26,17 @@
 
 .controls {
   display: flex;
+}
+
+.close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background-color: transparent;
+  border: none;
+  color: salmon;
+  cursor: pointer;
+}
+.closeIcon:hover {
+  color: blanchedalmond;
 }
