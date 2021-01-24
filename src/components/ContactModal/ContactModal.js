@@ -43,18 +43,10 @@ export default function ContactModal({ contactData, onCloseModal }) {
               onChange={({ target: { value } }) => setNumber(value)}
             />
           </div>
-          <div className={s.controls}>
-            <button
-              className="button"
-              type="button"
-              onClick={() => onCloseModal(false)}
-            >
-              Закрыть
-            </button>
-            <button className="button" type="button" onClick={handleSave}>
-              Сохранить
-            </button>
-          </div>
+
+          <button className="button" type="button" onClick={handleSave}>
+            Сохранить
+          </button>
         </form>
       </div>
     </div>
