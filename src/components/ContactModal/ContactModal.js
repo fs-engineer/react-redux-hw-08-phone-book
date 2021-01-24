@@ -10,7 +10,11 @@ export default function ContactModal({ contactData, onCloseModal }) {
   const dispatch = useDispatch();
 
   const handleSave = () => {
-    dispatch(editContacts(id, { name, number }));
+    const updateContact = {
+      name: name ? name : contact.name,
+      number: number ? number : contact.number,
+    };
+    dispatch(editContacts(id, updateContact));
     onCloseModal(false);
   };
 
@@ -20,7 +24,6 @@ export default function ContactModal({ contactData, onCloseModal }) {
         <form className={s.form}>
           <div className="inputWrapper">
             <label htmlFor="editName"></label>
-
             <input
               className="input"
               type="text"
