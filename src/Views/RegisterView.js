@@ -32,9 +32,7 @@ export default function RegisterView() {
     <Section title="Заполните форму">
       <form className="form">
         <div className="inputWrapper">
-          <label className="label" htmlFor="name">
-            {/* Имя */}
-          </label>
+          <label className="label" htmlFor="name"></label>
           <input
             className="input"
             type="Name"
@@ -46,9 +44,7 @@ export default function RegisterView() {
           />
         </div>
         <div className="inputWrapper">
-          <label className="label" htmlFor="email">
-            {/* Email */}
-          </label>
+          <label className="label" htmlFor="email"></label>
           <input
             className="input"
             type="email"
@@ -60,9 +56,7 @@ export default function RegisterView() {
           />
         </div>
         <div className="inputWrapper">
-          <label className="label" htmlFor="password">
-            {/* Пароль */}
-          </label>
+          <label className="label" htmlFor="password"></label>
           <input
             className="input"
             type="password"
@@ -74,12 +68,10 @@ export default function RegisterView() {
           />
         </div>
         <div className="inputWrapper">
-          <label className="label" htmlFor="password">
-            {/* Пароль */}
-          </label>
+          <label className="label" htmlFor="password"></label>
           <input
             className="input"
-            type="checkPassword"
+            type="password"
             name="checkPassword"
             id="checkPassword"
             value={checkPass}

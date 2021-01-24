@@ -1,6 +1,6 @@
 import axios from 'axios';
 import contactsActions from './contacts-actions';
-import { infoNotify } from '../../services/tostify';
+import { infoNotify, warnNotify } from '../../services/tostify';
 
 export const fetchContacts = () => async dispatch => {
   dispatch(contactsActions.fetchContactsRequest());
@@ -11,6 +11,7 @@ export const fetchContacts = () => async dispatch => {
     dispatch(contactsActions.fetchContactsSuccess(data));
   } catch (error) {
     dispatch(contactsActions.fetchContactsError(error.massage));
+    warnNotify(error.message);
   }
 };
 
@@ -25,6 +26,7 @@ export const addContact = (name, number) => async dispatch => {
     dispatch(contactsActions.addContactsSuccess(data));
   } catch (error) {
     dispatch(contactsActions.addContactsError(error.massage));
+    warnNotify(error.message);
   }
 };
 
@@ -37,17 +39,19 @@ export const deleteContacts = id => async dispatch => {
     dispatch(contactsActions.deleteContactsSuccess(id));
   } catch (error) {
     dispatch(contactsActions.deleteContactsError(error.massage));
+    warnNotify(error.message);
   }
 };
 
-// export const editContacts = id => async dispatch => {
-//   dispatch(editContactsRequest());
+export const editContacts = (id, update) => async dispatch => {
+  dispatch(contactsActions.editContactsRequest());
 
-//   try {
-//     await axios.patch(`/contacts/${id}`);
-
-//     dispatch(editContactsSuccess());
-//   } catch (error) {
-//     dispatch(editContactsError(error.massage));
-//   }
-// };
+  try {
+    const { data } = await axios.patch(`/contacts/${id}`, update);
+    console.log(data);
+    dispatch(contactsActions.editContactsSuccess(data));
+  } catch (error) {
+    dispatch(contactsActions.editContactsError(error.massage));
+    warnNotify(error.message);
+  }
+};

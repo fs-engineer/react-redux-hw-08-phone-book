@@ -9,6 +9,11 @@ const item = createReducer([], {
   ],
   [contactsActions.deleteContactsSuccess]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
+
+  [contactsActions.editContactsSuccess]: (state, { payload }) => {
+    const newState = state.filter(contact => contact.id !== payload.id);
+    return [...newState, payload];
+  },
 });
 
 const filter = createReducer('', {
@@ -27,6 +32,10 @@ const isLoading = createReducer(false, {
   [contactsActions.deleteContactsRequest]: () => true,
   [contactsActions.deleteContactsSuccess]: () => false,
   [contactsActions.deleteContactsError]: () => false,
+
+  [contactsActions.editContactsRequest]: () => true,
+  [contactsActions.editContactsSuccess]: () => false,
+  [contactsActions.editContactsError]: () => false,
 });
 
 export default combineReducers({
