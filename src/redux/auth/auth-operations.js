@@ -51,7 +51,7 @@ const logOut = () => async dispatch => {
     token.unset();
     dispatch(authActions.logOutSuccess());
   } catch (error) {
-    dispatch(authActions.logOutError(error));
+    dispatch(authActions.logOutError(error.message));
     warnNotify(error.message);
   }
 };
@@ -74,7 +74,7 @@ const getCurrentUser = () => async (dispatch, getState) => {
     dispatch(authActions.getCurrentUserSuccess(data));
   } catch (error) {
     dispatch(authActions.getCurrentUserError(error.message));
-    warnNotify(error.message);
+    // warnNotify(error.message);
   }
 };
 
