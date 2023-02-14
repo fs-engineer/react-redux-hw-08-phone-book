@@ -5,7 +5,6 @@ import Section from '../Layout/Section';
 import authOperations from '../redux/auth/auth-operations';
 
 export default function RegisterView() {
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [checkPass, setCheckPass] = useState('');
@@ -19,10 +18,9 @@ export default function RegisterView() {
       return;
     }
 
-    const user = { name, email, password };
+    const user = { email, password };
     dispatch(authOperations.register(user));
 
-    setName('');
     setEmail('');
     setPassword('');
     setCheckPass('');
@@ -31,18 +29,6 @@ export default function RegisterView() {
   return (
     <Section title="Заполните форму">
       <form className="form">
-        <div className="inputWrapper">
-          <label className="label" htmlFor="name"></label>
-          <input
-            className="input"
-            type="Name"
-            name="Name"
-            id="name"
-            value={name}
-            placeholder="имя"
-            onChange={({ target: { value } }) => setName(value)}
-          />
-        </div>
         <div className="inputWrapper">
           <label className="label" htmlFor="email"></label>
           <input

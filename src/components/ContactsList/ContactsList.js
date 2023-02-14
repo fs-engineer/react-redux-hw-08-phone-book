@@ -15,7 +15,7 @@ export default function ContactsList({ onOpenModal }) {
   return (
     <>
       <ul>
-        {filterContacts.map(({ id, name, number }) => (
+        {filterContacts.map(({ id, name, phone: number }) => (
           <li className={s.item} key={id}>
             <p className={s.nameText}>
               {name}: <span>{number}</span>

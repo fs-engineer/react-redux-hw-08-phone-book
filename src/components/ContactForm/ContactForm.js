@@ -7,6 +7,7 @@ import { getIsAdded } from '../../redux/contacts/contacts-selectors';
 export default function ContactsForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const [email, setEmail] = useState('');
   const isAdded = useSelector(getIsAdded);
   const dispatch = useDispatch();
 
@@ -16,11 +17,12 @@ export default function ContactsForm() {
     if (isAdded(name)) {
       return alert(`${name} is already in contacts`);
     } else {
-      dispatch(addContact(name, number));
+      dispatch(addContact({ name, phone: number, email }));
     }
 
     setName('');
     setNumber('');
+    setEmail('');
   };
 
   return (
@@ -40,6 +42,21 @@ export default function ContactsForm() {
             className={name ? 'labelRight' : 'label'}
             htmlFor="name"
           ></label>
+        </div>
+        <div className="inputWrapper">
+          <label
+            className={number ? 'labelRight' : 'label'}
+            htmlFor="email"
+          ></label>
+          <input
+            className="input"
+            type="email"
+            name="email"
+            id="email"
+            value={email}
+            placeholder="Email"
+            onChange={e => setEmail(e.target.value)}
+          />
         </div>
         <div className="inputWrapper">
           <label

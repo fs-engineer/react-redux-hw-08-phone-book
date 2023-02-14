@@ -2,7 +2,8 @@ import axios from 'axios';
 import authActions from './auth-actions';
 import { infoNotify, warnNotify } from '../../services/tostify';
 
-axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
+// axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
+axios.defaults.baseURL = 'http://localhost:5050';
 
 const token = {
   set(token) {
@@ -13,11 +14,22 @@ const token = {
   },
 };
 
+// const options = {
+//   headers: {
+//     'Access-Control-Allow-Origin' : '*',
+//     'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+//   }
+// }
+
 const register = credentials => async dispatch => {
   dispatch(authActions.registerRequest());
 
   try {
-    const { data } = await axios.post('/users/signup', credentials);
+    const { data } = await axios.post('/users/auth/register', credentials);
+    // const { data } = await axios.post('/users/auth/register', {
+    //   email: 'vad.evlanov@gmail.com',
+    //   password: 'vad123',
+    // });
 
     token.set(data.token);
     dispatch(authActions.registerSuccess(data));
@@ -31,10 +43,11 @@ const logIn = credentials => async dispatch => {
   dispatch(authActions.logInRequest());
 
   try {
-    const { data } = await axios.post('/users/login', credentials);
+    const { data } = await axios.post('/users/auth/login', credentials);
+    const { ResponseBody } = data;
 
-    token.set(data.token);
-    dispatch(authActions.logInSuccess(data));
+    token.set(ResponseBody?.token);
+    dispatch(authActions.logInSuccess(ResponseBody));
     infoNotify('Добро пожаловать');
   } catch (error) {
     dispatch(authActions.logInError(error.message));
@@ -46,7 +59,7 @@ const logOut = () => async dispatch => {
   dispatch(authActions.logOutRequest());
 
   try {
-    await axios.post('/users/logout');
+    await axios.post('/users/auth/logout');
 
     token.unset();
     dispatch(authActions.logOutSuccess());
@@ -70,8 +83,10 @@ const getCurrentUser = () => async (dispatch, getState) => {
   dispatch(authActions.getCurrentUserRequest());
 
   try {
-    const { data } = await axios.get('/users/current');
-    dispatch(authActions.getCurrentUserSuccess(data));
+    const { data } = await axios.get('/users/auth/current');
+    const { ResponseBody } = data;
+
+    dispatch(authActions.getCurrentUserSuccess(ResponseBody));
   } catch (error) {
     dispatch(authActions.getCurrentUserError(error.message));
     // warnNotify(error.message);
