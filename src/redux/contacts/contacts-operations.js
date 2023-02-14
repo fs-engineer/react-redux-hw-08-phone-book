@@ -12,8 +12,6 @@ export const fetchContacts = () => async dispatch => {
       },
     } = await axios.get('/contacts');
 
-    console.log(contacts);
-
     if (!contacts) {
       throw new Error('Problem with contacts fetch');
     }
@@ -34,14 +32,13 @@ export const fetchContacts = () => async dispatch => {
 };
 
 export const addContact = ({ name, phone, email }) => async dispatch => {
-  const contact = { name, phone, email };
   dispatch(contactsActions.addContactsRequest());
 
   try {
-    const { data } = await axios.post('/contacts', contact);
-    console.log(data);
+    const { data } = await axios.post('/contacts', { name, phone, email });
+    const { contact } = data;
 
-    dispatch(contactsActions.addContactsSuccess(data));
+    dispatch(contactsActions.addContactsSuccess(contact));
     infoNotify('Запись добавлена');
   } catch (error) {
     dispatch(contactsActions.addContactsError(error.massage));
@@ -67,8 +64,9 @@ export const editContacts = (id, update) => async dispatch => {
 
   try {
     const { data } = await axios.patch(`/contacts/${id}`, update);
-    console.log(data);
-    dispatch(contactsActions.editContactsSuccess(data));
+    const { name, email, phone } = data.contact;
+
+    dispatch(contactsActions.editContactsSuccess({ name, email, phone, id }));
   } catch (error) {
     dispatch(contactsActions.editContactsError(error.massage));
     warnNotify(error.message);

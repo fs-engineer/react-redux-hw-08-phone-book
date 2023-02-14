@@ -32,7 +32,7 @@ export default function ContactModal({ contactData, onCloseModal }) {
   const handleSave = () => {
     const updateContact = {
       name: name ? name : contact.name,
-      number: number ? number : contact.number,
+      phone: number ? number : contact.number,
     };
     dispatch(editContacts(id, updateContact));
     onCloseModal(false);
